@@ -7,8 +7,7 @@ import lombok.Setter;
 @Setter
 public class MemberRepositoryDTO {
 
-    private Long tenantId;
-    private String tenantName;
+    private String memberDbAddress;
 
     private Long id;
     private String name;

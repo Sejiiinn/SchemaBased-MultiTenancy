@@ -6,13 +6,12 @@
 <mapper namespace="kt.SchemaBasedMultiTenancy.member.MemberMapper">
 
     <resultMap id="memberResultMap" type="kt.SchemaBasedMultiTenancy.member.Member">
-        <result column="MEMBER_DB_ADDRESS"/>
         <result column="ID"/>
         <result column="NAME"/>
     </resultMap>
 
     <insert id="save">
-        INSERT INTO #{memberDbAddress}(id,name) VALUES(#{id}, #{name})
+        INSERT INTO ${memberDbAddress}(id,name) VALUES(#{id}, #{name})
     </insert>
 
 <!--    <delete id="delete">-->
@@ -23,9 +22,8 @@
 <!--        SELECT id,name FROM tenant WHERE id = #{id}-->
 <!--    </select>-->
 
-<!--    <select id="findAllTenant" resultMap="tenantResultMap">-->
-<!--        SELECT id,name FROM tenant-->
-<!--    </select>-->
-
+    <select id="findAllMember" resultMap="memberResultMap">
+        SELECT id,name FROM ${memberDbAddress}
+    </select>
 
 </mapper>

@@ -26,15 +26,15 @@ public class TenantCRUDTest {
 
     @Test // 테넌트 생성
     public void joinTenantTest() {
-        Tenant tenant = new Tenant(1001L, "Sejin");
+        Tenant tenant = new Tenant(1001L, "SMP");
         tenantMapper.save(tenant);
 
-        assertThat(tenantMapper.findById(1001L).getName()).isEqualTo("Sejin");
+        assertThat(tenantMapper.findById(1001L).getName()).isEqualTo("SMP");
     }
 
     @Test // 테넌트 제거
     void deleteTenantTest() {
-        Tenant tenant = new Tenant(1001L, "Sejin");
+        Tenant tenant = new Tenant(1001L, "SMP");
         tenantMapper.save(tenant);
         System.out.println("tenantMapper = " + tenantMapper.findById(tenant.getId()));
         tenantMapper.delete(tenant.getId());
@@ -46,19 +46,19 @@ public class TenantCRUDTest {
     @Test // 테넌트 및 테이블 생성
     @Order(1)
     void joinAndCreateTableTest() {
-        assertThat(tenantService.createNewTenant(1001L, "Sejin")).isEqualTo(0);
+        assertThat(tenantService.createNewTenant(1001L, "SMP")).isEqualTo(0);
     }
 
     @Test // 테넌트 및 테이블 제거
     @Order(2)
     void deleteAndDropTableTest() {
-        assertThat(tenantService.deleteTenant(1001L, "Sejin")).isEqualTo(0);
+        assertThat(tenantService.deleteTenant(1001L, "SMP")).isEqualTo(0);
     }
 
     @Test
     void findAllTenantTest() {
-        Tenant tenant1 = new Tenant(1001L, "Sejin");
-        Tenant tenant2 = new Tenant(1002L, "Minwoo");
+        Tenant tenant1 = new Tenant(1001L, "SMP");
+        Tenant tenant2 = new Tenant(1002L, "SOE");
         tenantMapper.save(tenant1);
         tenantMapper.save(tenant2);
 

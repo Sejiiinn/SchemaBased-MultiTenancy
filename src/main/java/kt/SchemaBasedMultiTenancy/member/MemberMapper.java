@@ -1,6 +1,5 @@
 package kt.SchemaBasedMultiTenancy.member;
 
-import kt.SchemaBasedMultiTenancy.tenant.Tenant;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -14,5 +13,5 @@ public interface MemberMapper {
 
     Member findById(Long id);
 
-    List<Member> findAllMember();
+    List<Member> findAllMember(String memberDbAddress);
 }
