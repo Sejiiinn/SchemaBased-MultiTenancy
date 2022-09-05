@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kt.SchemaBasedMultiTenancy.member.MemberMapper">
+
+    <resultMap id="memberResultMap" type="kt.SchemaBasedMultiTenancy.member.Member">
+        <result column="MEMBER_DB_ADDRESS"/>
+        <result column="ID"/>
+        <result column="NAME"/>
+    </resultMap>
+
+    <insert id="save">
+        INSERT INTO #{memberDbAddress}(id,name) VALUES(#{id}, #{name})
+    </insert>
+
+<!--    <delete id="delete">-->
+<!--        DELETE FROM tenant WHERE id = #{id}-->
+<!--    </delete>-->
+
+<!--    <select id="findById" resultType="kt.SchemaBasedMultiTenancy.tenant.Tenant">-->
+<!--        SELECT id,name FROM tenant WHERE id = #{id}-->
+<!--    </select>-->
+
+<!--    <select id="findAllTenant" resultMap="tenantResultMap">-->
+<!--        SELECT id,name FROM tenant-->
+<!--    </select>-->
+
+
+</mapper>
