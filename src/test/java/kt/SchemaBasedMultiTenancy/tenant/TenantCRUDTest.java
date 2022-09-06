@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @MybatisTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -40,7 +41,7 @@ public class TenantCRUDTest {
         tenantMapper.delete(tenant.getId());
         System.out.println("tenantMapper = " + tenantMapper.findById(tenant.getId()));
 
-        org.junit.jupiter.api.Assertions.assertNull(tenantMapper.findById(tenant.getId()));
+        assertNull(tenantMapper.findById(tenant.getId()));
     }
 
     @Test // 테넌트 및 테이블 생성

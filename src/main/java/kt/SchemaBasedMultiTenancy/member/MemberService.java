@@ -37,8 +37,31 @@ public class MemberService {
         }
     }
 
+    @Transactional
+    public int deleteMember(Long tenantId, String tenantName, Long id) {
+        MemberRepositoryDTO memberRepositoryDTO = new MemberRepositoryDTO();
+
+        memberRepositoryDTO.setMemberDbAddress(makeMemberDbAddress(tenantId, tenantName));
+        memberRepositoryDTO.setId(id);
+
+        try {
+            // 테넌트 정보 삭제
+            memberMapper.delete(memberRepositoryDTO);
+
+            return 0;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return -1;
+        }
+    }
+
     public List<Member> findAllMember(Long tenantId, String tenantName) {
         return memberMapper.findAllMember(makeMemberDbAddress(tenantId, tenantName));
+    }
+
+    public Member findById(Long tenantId, String tenantName, Long id) {
+        String memberDbAddress = makeMemberDbAddress(tenantId, tenantName);
+        return memberMapper.findById(memberDbAddress, id);
     }
 
     public String makeMemberDbAddress(Long tenantId, String tenantName) {

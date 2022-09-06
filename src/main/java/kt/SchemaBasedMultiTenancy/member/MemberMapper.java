@@ -11,7 +11,7 @@ public interface MemberMapper {
 
     void delete(MemberRepositoryDTO memberRepositoryDTO);
 
-    Member findById(Long id);
+    Member findById(String memberDbAddress, Long id);
 
     List<Member> findAllMember(String memberDbAddress);
 }
