@@ -3,19 +3,16 @@ package kt.SchemaBasedMultiTenancy.member;
 import kt.SchemaBasedMultiTenancy.tenant.Tenant;
 import kt.SchemaBasedMultiTenancy.tenant.TenantMapper;
 import kt.SchemaBasedMultiTenancy.tenant.TenantService;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.test.annotation.Commit;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @MybatisTest
@@ -39,8 +36,8 @@ public class MemberCRUDTest {
         tenantService = new TenantService(tenantMapper);
 
         // 테넌트의 멤버 테이블 생성
-        tenantService.createNewTenant(tenant1.getId(), tenant1.getName());
-        tenantService.createNewTenant(tenant2.getId(), tenant2.getName());
+        tenantService.createTenant(tenant1.getId(), tenant1.getName());
+        tenantService.createTenant(tenant2.getId(), tenant2.getName());
     }
 
     @AfterEach
@@ -56,10 +53,17 @@ public class MemberCRUDTest {
 
         // when
         // 멤버 생성
-        memberService.createMember(tenant1.getId(), tenant1.getName(), 1L, "SeJin");
-        memberService.createMember(tenant1.getId(), tenant1.getName(), 2L, "MinWoo");
+        memberService.createMember(tenant1.getId(), tenant1.getName(), 1L, "김민우");
+        memberService.createMember(tenant1.getId(), tenant1.getName(), 2L, "김세진");
+        memberService.createMember(tenant1.getId(), tenant1.getName(), 3L, "민경태");
+        memberService.createMember(tenant1.getId(), tenant1.getName(), 4L, "박수현");
+        memberService.createMember(tenant1.getId(), tenant1.getName(), 5L, "장지은");
+        memberService.createMember(tenant1.getId(), tenant1.getName(), 6L, "지관욱");
 
-        memberService.createMember(tenant2.getId(), tenant2.getName(), 1L, "search1");
+        memberService.createMember(tenant2.getId(), tenant2.getName(), 1L, "김형경");
+        memberService.createMember(tenant2.getId(), tenant2.getName(), 2L, "박경원");
+        memberService.createMember(tenant2.getId(), tenant2.getName(), 3L, "서치원");
+        memberService.createMember(tenant2.getId(), tenant2.getName(), 4L, "우승민");
 
         // then
         // 멤버 리스트

@@ -55,7 +55,7 @@ public class TenantCRUDTest {
     @Test // 테넌트 및 테이블 생성
     @Order(1)
     void joinAndCreateTableTest() {
-        assertThat(tenantService.createNewTenant(1001L, "SMP")).isEqualTo(0);
+        assertThat(tenantService.createTenant(1001L, "SMP")).isEqualTo(0);
     }
 
     @Test // 테넌트 및 테이블 제거

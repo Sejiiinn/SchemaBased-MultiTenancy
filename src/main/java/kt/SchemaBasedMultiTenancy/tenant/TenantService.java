@@ -14,7 +14,7 @@ public class TenantService {
     private final TenantMapper tenantMapper;
 
     @Transactional
-    public int createNewTenant(Long id, String name) {
+    public int createTenant(Long id, String name) {
         Tenant tenant = new Tenant(id, name);
         try {
             // 테넌트 정보 저장
