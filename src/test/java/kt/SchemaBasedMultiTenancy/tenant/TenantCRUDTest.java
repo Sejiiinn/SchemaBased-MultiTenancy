@@ -27,20 +27,28 @@ public class TenantCRUDTest {
 
     @Test // 테넌트 생성
     public void joinTenantTest() {
+        // given
         Tenant tenant = new Tenant(1001L, "SMP");
+
+        // when
         tenantMapper.save(tenant);
 
+        // then
         assertThat(tenantMapper.findById(1001L).getName()).isEqualTo("SMP");
     }
 
     @Test // 테넌트 제거
     void deleteTenantTest() {
+        // given
         Tenant tenant = new Tenant(1001L, "SMP");
         tenantMapper.save(tenant);
         System.out.println("tenantMapper = " + tenantMapper.findById(tenant.getId()));
+
+        // when
         tenantMapper.delete(tenant.getId());
         System.out.println("tenantMapper = " + tenantMapper.findById(tenant.getId()));
 
+        // then
         assertNull(tenantMapper.findById(tenant.getId()));
     }
 
@@ -58,13 +66,17 @@ public class TenantCRUDTest {
 
     @Test
     void findAllTenantTest() {
+        // given
         Tenant tenant1 = new Tenant(1001L, "SMP");
         Tenant tenant2 = new Tenant(1002L, "SOE");
         tenantMapper.save(tenant1);
         tenantMapper.save(tenant2);
 
+        // when
         List<Tenant> allTenant = tenantMapper.findAllTenant();
         System.out.println("allTenant = " + allTenant);
+
+        // then
         allTenant.stream().forEach(curTenant -> {
             System.out.println(curTenant.getId() + " " + curTenant.getName());
             assertThat(curTenant.getName()).isEqualTo(tenantMapper.findById(curTenant.getId()).getName());

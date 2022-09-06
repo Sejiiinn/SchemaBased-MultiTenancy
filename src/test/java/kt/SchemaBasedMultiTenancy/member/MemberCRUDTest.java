@@ -52,12 +52,16 @@ public class MemberCRUDTest {
 
     @Test
     void joinMemberTest() {
+        // given
+
+        // when
         // 멤버 생성
         memberService.createMember(tenant1.getId(), tenant1.getName(), 1L, "SeJin");
         memberService.createMember(tenant1.getId(), tenant1.getName(), 2L, "MinWoo");
 
         memberService.createMember(tenant2.getId(), tenant2.getName(), 1L, "search1");
 
+        // then
         // 멤버 리스트
         System.out.println(tenant1.getName());
         List<Member> SMPMember = memberService.findAllMember(tenant1.getId(), tenant1.getName());
@@ -75,15 +79,18 @@ public class MemberCRUDTest {
 
     @Test
     void deleteMemberTest() {
-       // 멤버 생성
+        // given
+        // 멤버 생성
         Member member1 = new Member(1L, "SeJin");
         Member member2 = new Member(2L, "MinWoo");
 
         memberService.createMember(tenant1.getId(), tenant1.getName(), member1.getId(), member1.getName());
         memberService.createMember(tenant1.getId(), tenant1.getName(), member2.getId(), member2.getName());
 
+        // when
         memberService.deleteMember(tenant1.getId(), tenant1.getName(), member2.getId());
 
+        // then
         assertThat(memberService.findById(tenant1.getId(), tenant1.getName(), member1.getId()).getName()).isEqualTo(member1.getName());
         assertNull(memberService.findById(tenant1.getId(), tenant1.getName(), member2.getId()));
     }
